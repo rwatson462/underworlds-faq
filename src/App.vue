@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import Header from './components/Header.vue'
-import Footer from "@/components/icons/Footer.vue";
+import Footer from '@/components/Footer.vue'
 </script>
 
 <template>
@@ -9,9 +9,17 @@ import Footer from "@/components/icons/Footer.vue";
     <Header />
 
     <v-main>
-      <RouterView />
+      <v-sheet>
+        <RouterView />
+      </v-sheet>
     </v-main>
 
     <Footer />
   </v-app>
 </template>
+
+<style scoped>
+  .v-sheet {
+    padding: 1rem;
+  }
+</style>

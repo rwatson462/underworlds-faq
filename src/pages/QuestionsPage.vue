@@ -2,21 +2,24 @@
 import QuestionAnswer from "@/components/QuestionAnswer.vue";
 import {ref} from "vue";
 import {supabaseClient} from "@/helpers/supabaseClient";
+import type { Question } from '@/types'
+
 
 const error = ref('')
-const questions = ref([])
+const questions = ref<Question[]>([])
 
 supabaseClient()
     .from('compiled_questions')
     .select()
-    .then(({data, error}) => {
-      console.log(data)
-      if (error) {
-        throw new Error(error.message)
+    .then(({data, error: err}) => {
+      if (err) {
+        error.value = err.message
+        return
       }
-    })
-    .catch(message => error.value = message)
 
+      console.log(data)
+      questions.value = data
+    })
 
 </script>
 

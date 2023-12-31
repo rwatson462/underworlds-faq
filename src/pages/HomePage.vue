@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import QuestionAnswer from '@/components/QuestionAnswer.vue'
+import ExternalLink from '@/components/ExternalLink.vue'
 
 const randomQuestion = {
   question: 'When a rule refers to an activation, is that the same thing as an activation step?',
@@ -32,8 +33,8 @@ const randomQuestion = {
     <section>
       <p>Sources:</p>
       <ul class="list-disc list-inside">
-        <li><a href="https://www.warhammer-community.com/wp-content/uploads/2022/10/3o0MaTmdQ3vUgqYa.pdf" target="_blank" rel="noopener" class="underline text-blue-600 hover:text-red-600 transition-colors">Rules Update, December 2023</a></li>
-        <li><a href="https://www.warhammer-community.com/wp-content/uploads/2022/10/nC1X3OxTXkVbNMPj.pdf" target="_blank" rel="noopener" class="underline text-blue-600 hover:text-red-600 transition-colors">Designer's Commentary, December 2023</a></li>
+        <li><ExternalLink to="https://www.warhammer-community.com/wp-content/uploads/2022/10/3o0MaTmdQ3vUgqYa.pdf" text="Rules Update, December 2023" /></li>
+        <li><ExternalLink to="https://www.warhammer-community.com/wp-content/uploads/2022/10/nC1X3OxTXkVbNMPj.pdf" text="Designer's Commentary, December 2023" /></li>
       </ul>
     </section>
   </div>

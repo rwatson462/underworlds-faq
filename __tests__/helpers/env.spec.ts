@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import {env} from "@/helpers/env";
+import {env} from "../../src/helpers/env";
 
 describe('env helper test', () => {
     it('automatically prefixes env requests with VITE_', () => {

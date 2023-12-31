@@ -3,3 +3,7 @@ export type Question = {
   answer: string,
   source: string,
 }
+
+export type Source = {
+  name: string,
+}

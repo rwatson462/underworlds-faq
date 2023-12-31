@@ -11,24 +11,30 @@ export const routes = [
     {
         path: '/about',
         name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (About.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: () => import('../pages/AboutPage.vue')
     },
     {
         path: '/login',
         name: 'login',
-        component: () => import('../pages/LoginPage.vue')
+        component: () => import('../pages/LoginPage.vue'),
+        meta: {
+            noAuth: true,
+        }
     },
-    {
-        path: '/register',
-        name: 'register',
-        component: () => import('../pages/RegisterPage.vue')
-    },
+    // {
+    //     path: '/register',
+    //     name: 'register',
+    //     component: () => import('../pages/RegisterPage.vue'),
+    //     meta: {
+    //         noAuth: true,
+    //     }
+    // },
     {
         path: '/profile',
         name: 'profile',
-        component: () => import('../pages/ProfilePage.vue')
+        component: () => import('../pages/ProfilePage.vue'),
+        meta: {
+            requiresAuth: true,
+        }
     }
 ] as const

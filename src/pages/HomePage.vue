@@ -6,9 +6,7 @@ import Heading from '@/components/Heading.vue'
 const randomQuestion = {
   question: 'When a rule refers to an activation, is that the same thing as an activation step?',
   answer: 'Yes',
-  sources: [
-    'FAQ'
-  ]
+  source: 'FAQ'
 }
 
 </script>
@@ -21,16 +19,16 @@ const randomQuestion = {
       <p>Released December 31st 2023 and contains Designer's Commentary and Rules updates from December 2023.</p>
     </section>
 
-    <section>
-      <p>Here's a random question:</p>
-      <section class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <QuestionAnswer
-          :question="randomQuestion.question"
-          :answer="randomQuestion.answer"
-          :sources="randomQuestion.sources"
-        />
-      </section>
-    </section>
+  <section>
+  <p>Here's a random question:</p>
+  <section class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <QuestionAnswer
+      :question="randomQuestion.question"
+      :answer="randomQuestion.answer"
+      :source="randomQuestion.source"
+    />
+  </section>
+  </section>
 
     <section>
       <p>Sources:</p>

@@ -35,6 +35,11 @@ export const routes = [
         component: () => import('../pages/ProfilePage.vue'),
         meta: {
             requiresAuth: true,
-        }
+        },
+    },
+    {
+        path: '/questions',
+        name: 'questions',
+        component: () => import('../pages/QuestionsPage.vue')
     }
 ] as const

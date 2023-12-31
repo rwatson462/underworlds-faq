@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/AuthStore'
+import Heading from '@/components/Heading.vue'
 
 const authStore = useAuthStore()
 
@@ -9,14 +10,7 @@ const user = authStore.user!
 </script>
 
 <template>
-  <v-card variant="flat">
-    <v-card-item>
-      <v-card-title>Your profile</v-card-title>
-    </v-card-item>
-    <v-card-item>
-      <v-card-text>Name: {{ user.user_metadata.name}}</v-card-text>
-      <v-card-text>Email: {{ user.email }}</v-card-text>
-      <v-card-text>Confirmed: {{ user.email_confirmed_at ? 'Yes' : 'No' }}</v-card-text>
-    </v-card-item>
-  </v-card>
+  <Heading text="Your profile" />
+  <p>Name: {{ user.user_metadata.name }}</p>
+  <p>Email: {{ user.email }}</p>
 </template>

@@ -13,7 +13,7 @@ function logout() {
 
 <template>
   <v-app-bar>
-    <v-app-bar-title><InternalLink :to="route('home')" text="Searchable Underworlds FAQ" /></v-app-bar-title>
+    <v-app-bar-title><InternalLink :to="route('home')" text="Underworlds FAQ" /></v-app-bar-title>
     <template v-slot:append>
       <v-btn v-if="!authStore.isLoggedIn" text="Log in" :to="route('login')" />
       <v-btn v-if="authStore.isLoggedIn" icon="mdi-account-circle" title="Your profile" :to="route('profile')" />

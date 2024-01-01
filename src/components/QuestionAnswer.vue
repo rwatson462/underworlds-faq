@@ -14,10 +14,10 @@
       <v-icon icon="mdi-chat-question-outline" />
       {{ props.question }}
     </v-card-text>
-    <v-card-text class="answer">
+    <v-card-text class="whitespace-break-spaces">
       A: {{ props.answer }}
     </v-card-text>
-    <v-card-text class="flex gap-4 p-4" v-if="cards || tags">
+    <v-card-text class="flex gap-4 p-4" v-if="cards?.length || tags?.length">
       <VChip size="small" v-for="(card,key) in cards" :key="key" :text="card" variant="flat" />
       <VChip size="small" v-for="(tag,key) in tags" :key="key" :text="tag" variant="tonal" />
     </v-card-text>

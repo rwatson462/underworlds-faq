@@ -9,6 +9,7 @@ const questionStore = useQuestionStore()
 
 <template>
   <Heading text="All Questions" />
+  <p>Found {{ questionStore.questions.length }} questions</p>
   <section class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     <QuestionAnswer v-for="(question, key) in questionStore.questions" :key="key"
         :question="question.question"

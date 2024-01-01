@@ -2,30 +2,37 @@
 import QuestionAnswer from '@/components/QuestionAnswer.vue'
 import ExternalLink from '@/components/ExternalLink.vue'
 import Heading from '@/components/Heading.vue'
+import InternalLink from '@/components/InternalLink.vue'
+import { route } from '@/helpers/route'
 
 const randomQuestion = {
-  question: 'When a rule refers to an activation, is that the same thing as an activation step?',
-  answer: 'Yes',
-  source: 'FAQ'
+  question: 'Can Ghartok be driven back?',
+  answer: 'No',
+  source: 'It is written on his card',
+  tags: ["Magore's Fiends"],
 }
 
 </script>
 
 <template>
   <div class="flex flex-col gap-8">
-    <section>
+    <section class="flex flex-col gap-4">
       <Heading text="Welcome to Underworlds FAQ" />
-      <p>Underworlds FAQ is an easy-to-use FAQ space for Warhammer Underworlds by Games Workshop.</p>
-      <p>Released December 31st 2023 and contains Designer's Commentary and Rules updates from December 2023.</p>
+      <p>
+        Underworlds FAQ is an easy-to-use FAQ presentation for Warhammer Underworlds by Games Workshop, released
+        January 1st 2024 and contains Designer's Commentary and Rules updates from December 2023.
+      </p>
+      <p><InternalLink :to="route('questions')" text="Get started here" /></p>
     </section>
 
   <section>
-  <p>Here's a random question:</p>
+  <p>Here's an inside joke question, but you can see how the entries are formatted:</p>
   <section class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     <QuestionAnswer
       :question="randomQuestion.question"
       :answer="randomQuestion.answer"
       :source="randomQuestion.source"
+      :tags="randomQuestion.tags"
     />
   </section>
   </section>
@@ -35,11 +42,15 @@ const randomQuestion = {
       <ul class="list-disc list-inside">
         <li>
           <ExternalLink to="https://www.warhammer-community.com/wp-content/uploads/2022/10/3o0MaTmdQ3vUgqYa.pdf"
-                        text="Rules Update, December 2023" />
+                        text="Rules Update, December 2023" /> (pdf)
         </li>
         <li>
           <ExternalLink to="https://www.warhammer-community.com/wp-content/uploads/2022/10/nC1X3OxTXkVbNMPj.pdf"
-                        text="Designer's Commentary, December 2023" />
+                        text="Designer's Commentary, December 2023" /> (pdf)
+        </li>
+        <li>
+          <ExternalLink to="https://www.warhammer-community.com/wp-content/uploads/2022/10/qLeKiJExZOaKQvYZ.pdf"
+                        text="Previous Seasons Designer’s Commentary, December 2023" /> (pdf)
         </li>
       </ul>
     </section>

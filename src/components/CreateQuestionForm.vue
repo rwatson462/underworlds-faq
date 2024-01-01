@@ -17,7 +17,7 @@ function createQuestion() {
   loading.value = true
 
   questionStore
-    .createQuestion(question.value, answer.value, source.value, cards.value, tags.value)
+    .createQuestion(question.value.trim(), answer.value.trim(), source.value, cards.value, tags.value)
     .then(() => {
       question.value = ''
       answer.value = ''

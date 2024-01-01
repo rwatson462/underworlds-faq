@@ -8,6 +8,7 @@ export const useQuestionStore = defineStore(
   () => {
     const sources = ref<string[]>([])
     const tags = ref<string[]>([])
+    const cards = ref<string[]>([])
     const questions = ref<Question[]>([])
 
     const supabase = supabaseClient()
@@ -15,6 +16,7 @@ export const useQuestionStore = defineStore(
     loadSources()
     loadQuestions()
     loadTags()
+    loadCards()
 
     async function loadSources() {
       supabase
@@ -42,6 +44,19 @@ export const useQuestionStore = defineStore(
         })
     }
 
+    async function loadCards() {
+      supabase
+        .from('cards')
+        .select('name')
+        .then(({ data, error }) => {
+          if (error) {
+            throw new Error(error.message)
+          }
+
+          cards.value = data.map(card => card.name)
+        })
+    }
+
     async function loadQuestions() {
       supabase
         .from('compiled_questions')
@@ -51,7 +66,13 @@ export const useQuestionStore = defineStore(
             throw new Error(error.message)
           }
 
-          questions.value = data
+          questions.value = data.map((question): Question => ({
+            question: question.question,
+            answer: question.answer,
+            source: question.source,
+            cards: JSON.parse(question.cards),
+            tags: JSON.parse(question.tags),
+          }))
         })
     }
 
@@ -85,14 +106,30 @@ export const useQuestionStore = defineStore(
         })
     }
 
-    async function createQuestion(question: string, answer: string, source: string, associated_card: string|null = null) {
+    async function createCard(card: string) {
+      return supabase
+        .from('cards')
+        .insert({
+          name: card
+        })
+        .then(({ error }) => {
+          if (error) {
+            throw new Error(error.message)
+          }
+
+          loadCards()
+        })
+    }
+
+    async function createQuestion(question: string, answer: string, source: string, cards: string[]|null = null, tags: string[] | null = null) {
       return await supabase
         .from('compiled_questions')
         .insert({
           question,
           answer,
           source,
-          associated_card
+          cards: JSON.stringify(cards),
+          tags: JSON.stringify(tags),
         })
         .then(({ error }) => {
           if (error) {
@@ -101,13 +138,29 @@ export const useQuestionStore = defineStore(
       })
     }
 
+    async function deleteQuestion(question: string) {
+      return supabase
+        .from('compiled_questions')
+        .delete()
+        .eq('question', question)
+        .then(({ error }) => {
+          if (error) {
+            throw new Error(error.message)
+          }
+
+          loadQuestions()
+        })
+    }
     return {
       sources,
       questions,
+      cards,
       tags,
       createSource,
       createQuestion,
       createTag,
+      createCard,
+      deleteQuestion,
     }
   }
 )

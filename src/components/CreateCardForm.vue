@@ -4,34 +4,38 @@ import { ref } from 'vue'
 
 const questionStore = useQuestionStore()
 
-const newSource = ref('')
+const newCard = ref('')
 const saveError = ref('')
 const loading = ref(false)
 const showSnackbar = ref(false)
 
-function createSource() {
+function createCard() {
   loading.value = true
+  saveError.value = ''
 
   questionStore
-    .createSource(newSource.value)
-    .then(() => newSource.value = '')
-    .catch(err => saveError.value = err)
+    .createCard(newCard.value)
+    .then(() => {
+      newCard.value = ''
+      showSnackbar.value = true
+    })
+    .catch((err: string) => saveError.value = err)
     .finally(() => loading.value = false)
 }
 </script>
 
 <template>
-  <form @submit.prevent="createSource()">
-    <v-text-field v-model="newSource" label="Source" />
+  <form @submit.prevent="createCard()">
+    <v-text-field v-model="newCard" label="Card" />
     <p class="text-red-500 font-semibold text-sm" v-if="saveError">{{ saveError }}</p>
-    <v-btn type="submit" color="primary" text="Create Source" :disabled="loading" />
+    <v-btn type="submit" color="primary" text="Create Card" :disabled="loading" />
   </form>
   <v-list>
-    <v-list-subheader>Existing Sources</v-list-subheader>
-    <v-list-item v-for="(source, key) in questionStore.sources" :key="key">{{ source }}</v-list-item>
+    <v-list-subheader>Existing Cards</v-list-subheader>
+    <v-list-item v-for="(card, key) in questionStore.cards" :key="key">{{ card }}</v-list-item>
   </v-list>
   <v-snackbar v-model="showSnackbar" color="primary" location="bottom right" :timeout="2000">
-    New source saved
+    New card saved
     <template v-slot:actions>
       <v-btn variant="text" @click="showSnackbar = false" text="Close" />
     </template>

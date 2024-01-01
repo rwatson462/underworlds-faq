@@ -28,7 +28,7 @@ function createTag() {
   <form @submit.prevent="createTag()">
     <v-text-field v-model="newTag" label="Tag" />
     <p class="text-red-500 font-semibold text-sm" v-if="saveError">{{ saveError }}</p>
-    <v-btn type="submit" color="secondary" text="Create Tag" :disabled="loading" />
+    <v-btn type="submit" color="primary" text="Create Tag" :disabled="loading" />
   </form>
   <v-list>
     <v-list-subheader>Existing Tags</v-list-subheader>

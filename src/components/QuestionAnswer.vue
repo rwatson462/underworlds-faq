@@ -3,6 +3,8 @@
     'question',
     'answer',
     'source',
+    'card',
+    'tags',
   ])
 </script>
 
@@ -17,6 +19,10 @@
     </v-card-text>
     <v-card-text class="flex gap-4 p-4">
       <VChip size="small" :text="source" variant="flat" />
+    </v-card-text>
+    <v-card-text v-if="card" :text="card" />
+    <v-card-text class="flex gap-4 p-4" v-if="tags">
+      <VChip size="small" v-for="(tag,key) in tags" :key="key" :text="tag" variant="tonal" />
     </v-card-text>
   </v-card>
 </template>

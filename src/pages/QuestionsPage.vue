@@ -14,6 +14,8 @@ const questionStore = useQuestionStore()
         :question="question.question"
         :answer="question.answer"
         :source="question.source"
+        :card="question.card"
+        :tags="question.tags"
     />
   </section>
 </template>

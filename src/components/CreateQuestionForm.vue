@@ -6,8 +6,9 @@ const questionStore = useQuestionStore()
 
 const question = ref('')
 const answer = ref('')
-const card = ref('')
 const source = ref('')
+const cards = ref<string[]>([])
+const tags = ref<string[]>([])
 const saveError = ref('')
 const loading = ref(false)
 const showSnackbar = ref(false)
@@ -16,12 +17,13 @@ function createQuestion() {
   loading.value = true
 
   questionStore
-    .createQuestion(question.value, answer.value, source.value, card.value)
+    .createQuestion(question.value, answer.value, source.value, cards.value, tags.value)
     .then(() => {
       question.value = ''
       answer.value = ''
       source.value = ''
-      card.value = ''
+      cards.value = []
+      tags.value = []
 
       showSnackbar.value = true
     })
@@ -35,8 +37,9 @@ function createQuestion() {
     <p v-if="saveError" class="text-red-500 font-semibold">{{ saveError }}</p>
     <v-text-field v-model="question" label="Question" />
     <v-text-field v-model="answer" label="Answer" />
-    <v-text-field v-model="card" label="Card" />
     <v-select label="Source" v-model="source" :items="questionStore.sources" />
+    <v-select label="Cards" v-model="cards" :items="questionStore.cards" :multiple="true" />
+    <v-select label="Tags" v-model="tags" :items="questionStore.tags" :multiple="true" />
 
     <v-btn type="submit" color="primary" text="Create question" :disabled="loading" />
   </form>

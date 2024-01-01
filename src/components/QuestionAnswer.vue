@@ -1,11 +1,17 @@
 <script setup lang="ts">
+  import { computed } from 'vue'
+
   const props = defineProps([
     'question',
     'answer',
     'source',
     'cards',
     'tags',
+    'search',
   ])
+
+  // todo highlight words search for
+  // const searchWords = computed(() => props.search.split(' ').filter((s: string) => s.length > 0))
 </script>
 
 <template>

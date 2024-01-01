@@ -1,36 +1,19 @@
 <script setup lang="ts">
 import QuestionAnswer from "@/components/QuestionAnswer.vue";
-import {ref} from "vue";
-import {supabaseClient} from "@/helpers/supabaseClient";
-import type { Question } from '@/types'
+import { useQuestionStore } from '@/stores/QuestionStore'
+import Heading from '@/components/Heading.vue'
 
-
-const error = ref('')
-const questions = ref<Question[]>([])
-
-supabaseClient()
-    .from('compiled_questions')
-    .select()
-    .then(({data, error: err}) => {
-      if (err) {
-        error.value = err.message
-        return
-      }
-
-      console.log(data)
-      questions.value = data
-    })
+const questionStore = useQuestionStore()
 
 </script>
 
 <template>
-  <h1 class="text-2xl font-semibold">All Questions</h1>
-  <p v-if="error" class="text-red-500">{{ error }}</p>
+  <Heading text="All Questions" />
   <section class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    <QuestionAnswer v-for="(question, key) in questions" :key="key"
+    <QuestionAnswer v-for="(question, key) in questionStore.questions" :key="key"
         :question="question.question"
         :answer="question.answer"
-        :sources="question.source"
+        :source="question.source"
     />
   </section>
 </template>

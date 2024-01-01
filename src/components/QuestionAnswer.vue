@@ -3,7 +3,7 @@
     'question',
     'answer',
     'source',
-    'card',
+    'cards',
     'tags',
   ])
 </script>
@@ -17,12 +17,12 @@
     <v-card-text class="answer">
       A: {{ props.answer }}
     </v-card-text>
-    <v-card-text class="flex gap-4 p-4">
-      <VChip size="small" :text="source" variant="flat" />
-    </v-card-text>
-    <v-card-text v-if="card" :text="card" />
-    <v-card-text class="flex gap-4 p-4" v-if="tags">
+    <v-card-text class="flex gap-4 p-4" v-if="cards || tags">
+      <VChip size="small" v-for="(card,key) in cards" :key="key" :text="card" variant="flat" />
       <VChip size="small" v-for="(tag,key) in tags" :key="key" :text="tag" variant="tonal" />
+    </v-card-text>
+    <v-card-text class="text-sm">
+      Source: {{ source }}
     </v-card-text>
   </v-card>
 </template>

@@ -17,6 +17,18 @@ export const useAuthStore = defineStore(
       user.value = data.session?.user ?? null
     }
 
+    async function changePassword(newPassword: string){
+      const {error} = await supabase.auth.updateUser({
+        password: newPassword
+      })
+
+      if (error) {
+        throw new Error(error.message)
+      }
+
+      return true
+    }
+
     async function login(email: string, password: string) {
       if (email.length === 0 || password.length === 0) {
         throw new Error('Email address and password must be given')
@@ -66,7 +78,8 @@ export const useAuthStore = defineStore(
       login,
       register,
       refreshUser,
-      logout
+      logout,
+      changePassword,
     }
   }
 )

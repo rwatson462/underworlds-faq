@@ -2,6 +2,7 @@
 import { useAuthStore } from '@/stores/AuthStore'
 import { ref } from 'vue'
 import { router } from '@/router/router'
+import Heading from '@/components/Heading.vue'
 
 const authStore = useAuthStore()
 
@@ -15,28 +16,21 @@ function login() {
   error.value = ''
 
   authStore.login(email.value, password.value)
-    .then(() => router.push({name: 'home'}))
+    .then(() => router.push({ name: 'home' }))
     .catch((e) => error.value = e.message)
     .finally(() => submitting.value = false)
 }
 </script>
 
 <template>
-  <form @submit.prevent="login()">
-    <v-card>
-      <v-card-item>
-        <v-card-title>Log in</v-card-title>
-      </v-card-item>
-      <v-card-text>
-        <v-text-field type="email" label="Email address" v-model="email" />
-        <v-text-field type="password" label="Password" v-model="password" />
-        <p class="text-red-600 p-2" v-if="error">{{ error }}</p>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn type="submit" color="primary" variant="tonal" text="Log in" :disabled="submitting" />
-      </v-card-actions>
-    </v-card>
-  </form>
+    <Heading text="Log in" />
+    <form @submit.prevent="login()">
+      <v-text-field type="email" label="Email address" v-model="email" />
+      <v-text-field type="password" label="Password" v-model="password" />
+      <p class="text-red-600 p-2" v-if="error">{{ error }}</p>
+      <v-btn type="submit" color="primary" variant="tonal" text="Log in" :disabled="submitting" />
+    </form>
+
 </template>
 
 <style scoped>

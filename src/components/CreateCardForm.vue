@@ -9,6 +9,8 @@ const saveError = ref('')
 const loading = ref(false)
 const showSnackbar = ref(false)
 
+const filter = ref('')
+
 function createCard() {
   loading.value = true
   saveError.value = ''
@@ -32,7 +34,13 @@ function createCard() {
   </form>
   <v-list>
     <v-list-subheader>Existing Cards</v-list-subheader>
-    <v-list-item v-for="(card, key) in questionStore.cards" :key="key">{{ card }}</v-list-item>
+    <v-list-item>
+      <v-text-field v-model="filter" label="Search cards" />
+    </v-list-item>
+    <v-list-item
+      v-for="(card, key) in questionStore.cards.filter(c => c.toLowerCase().includes(filter.toLowerCase()))"
+      :key="key"
+    >{{ card }}</v-list-item>
   </v-list>
   <v-snackbar v-model="showSnackbar" color="primary" location="bottom right" :timeout="2000">
     New card saved

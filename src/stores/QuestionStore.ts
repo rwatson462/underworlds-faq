@@ -135,6 +135,8 @@ export const useQuestionStore = defineStore(
           if (error) {
             throw new Error(error.message)
           }
+
+          loadQuestions()
       })
     }
 

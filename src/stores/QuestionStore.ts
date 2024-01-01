@@ -27,7 +27,7 @@ export const useQuestionStore = defineStore(
             throw new Error(error.message)
           }
 
-          sources.value = data.map(source => source.name)
+          sources.value = data.map(source => source.name).sort()
         })
     }
 
@@ -40,7 +40,7 @@ export const useQuestionStore = defineStore(
             throw new Error(error.message)
           }
 
-          tags.value = data.map(tag => tag.name)
+          tags.value = data.map(tag => tag.name).sort()
         })
     }
 
@@ -53,7 +53,7 @@ export const useQuestionStore = defineStore(
             throw new Error(error.message)
           }
 
-          cards.value = data.map(card => card.name)
+          cards.value = data.map(card => card.name).sort()
         })
     }
 

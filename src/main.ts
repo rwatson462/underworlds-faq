@@ -7,6 +7,7 @@ import App from './App.vue'
 import {router} from './router/router'
 import {vuetify} from "@/setup/vuetify";
 
+// Add Vercel's analytics gizmo
 inject()
 
 createApp(App)

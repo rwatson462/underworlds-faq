@@ -8,4 +8,15 @@ import '@mdi/font/css/materialdesignicons.css'
 export const vuetify = createVuetify({
     components,
     directives,
+    defaults: {
+        VTextField: {
+            variant: 'outlined',
+        },
+        VTextarea: {
+            variant: 'outlined',
+        },
+        VAutocomplete: {
+            variant: 'outlined',
+        },
+    }
 })

@@ -9,11 +9,6 @@ export const routes = [
         component: HomePage
     },
     {
-        path: '/about',
-        name: 'about',
-        component: () => import('../pages/AboutPage.vue')
-    },
-    {
         path: '/login',
         name: 'login',
         component: () => import('../pages/LoginPage.vue'),

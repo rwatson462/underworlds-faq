@@ -28,8 +28,8 @@ function showEditModal() {
     </tbody>
   </v-table>
   <v-dialog>
-    <template v-slot:default="{ showDialog }">
+<!--    <template v-slot:default="{ showDialog }">-->
 
-    </template>
+<!--    </template>-->
   </v-dialog>
 </template>

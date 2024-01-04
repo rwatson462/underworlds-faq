@@ -55,6 +55,7 @@ function debounce(callback: (...args: any[]) => void, delay: number) {
 }
 
 watch(search, debounce((query: string) => {
+  console.log('Tracking search for [', query, ']')
   track('search', { query })
 }, 1000))
 

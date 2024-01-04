@@ -3,6 +3,7 @@ import { useAuthStore } from '@/stores/AuthStore'
 import { ref } from 'vue'
 import { router } from '@/router/router'
 import Heading from '@/components/Heading.vue'
+import { track } from '@vercel/analytics'
 
 const authStore = useAuthStore()
 
@@ -21,7 +22,12 @@ function login() {
       password.value = ''
       router.push({ name: 'home' })
     })
-    .catch((e) => error.value = e.message)
+    .catch((e) => {
+      // out of interest, track unsuccessful login attempts
+      track('unsuccessful_login', { email: email.value })
+
+      error.value = e.message
+    })
     .finally(() => submitting.value = false)
 }
 </script>

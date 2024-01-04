@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import Heading from '@/components/Heading.vue'
-import CreateSourceForm from '@/components/CreateSourceForm.vue'
-import CreateQuestionForm from '@/components/CreateQuestionForm.vue'
+import SourceTab from '@/components/ManageQuestions/SourceTab.vue'
+import NewQuestionTab from '@/components/ManageQuestions/NewQuestionTab.vue'
 import { ref } from 'vue'
-import CreateTagForm from '@/components/CreateTagForm.vue'
-import CreateCardForm from '@/components/CreateCardForm.vue'
-import ManageQuestionsForm from '@/components/ManageQuestionsForm.vue'
+import TagTab from '@/components/ManageQuestions/TagTab.vue'
+import CardTab from '@/components/ManageQuestions/CardTab.vue'
+import QuestionsTab from '@/components/ManageQuestions/QuestionsTab.vue'
 
 const tab = ref('new-question')
 </script>
@@ -23,19 +23,19 @@ const tab = ref('new-question')
 
     <v-window v-model="tab">
       <v-window-item value="new-question">
-        <CreateQuestionForm />
+        <NewQuestionTab />
       </v-window-item>
       <v-window-item value="cards">
-        <CreateCardForm />
+        <CardTab />
       </v-window-item>
       <v-window-item value="sources">
-        <CreateSourceForm />
+        <SourceTab />
       </v-window-item>
       <v-window-item value="tags">
-        <CreateTagForm />
+        <TagTab />
       </v-window-item>
       <v-window-item value="questions">
-        <ManageQuestionsForm />
+        <QuestionsTab />
       </v-window-item>
     </v-window>
   </div>

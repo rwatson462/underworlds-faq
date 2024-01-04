@@ -27,14 +27,14 @@ function createTag() {
 
 <template>
   <form @submit.prevent="createTag()">
-    <v-text-field v-model="newTag" label="Tag" />
+    <v-text-field v-model="newTag" label="Tag" class="mt-2" />
     <p class="text-red-500 font-semibold text-sm" v-if="saveError">{{ saveError }}</p>
     <v-btn type="submit" color="primary" text="Create Tag" :disabled="loading" />
   </form>
   <v-list>
     <v-list-subheader>Existing Tags</v-list-subheader>
     <v-list-item>
-      <v-text-field v-model="filter" label="Search tags" />
+      <v-text-field v-model="filter" label="Search tags" class="mt-2" />
     </v-list-item>
     <v-list-item
       v-for="(tag, key) in questionStore.tags.filter(c => c.toLowerCase().includes(filter.toLowerCase()))"

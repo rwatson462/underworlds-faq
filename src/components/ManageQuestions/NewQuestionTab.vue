@@ -35,11 +35,11 @@ function createQuestion() {
 <template>
   <form @submit.prevent="createQuestion()">
     <p v-if="saveError" class="text-red-500 font-semibold">{{ saveError }}</p>
-    <v-textarea v-model="question" label="Question" />
-    <v-textarea v-model="answer" label="Answer" />
-    <v-autocomplete label="Source" v-model="source" :items="questionStore.sources" />
-    <v-autocomplete label="Cards" v-model="cards" :items="questionStore.cards" :multiple="true" />
-    <v-autocomplete label="Tags" v-model="tags" :items="questionStore.tags" :multiple="true" />
+    <v-textarea v-model="question" label="Question" class="mt-2" />
+    <v-textarea v-model="answer" label="Answer" class="mt-2" />
+    <v-autocomplete label="Source" v-model="source" :items="questionStore.sources" class="mt-2" />
+    <v-autocomplete label="Cards" v-model="cards" :items="questionStore.cards" :multiple="true" class="mt-2" />
+    <v-autocomplete label="Tags" v-model="tags" :items="questionStore.tags" :multiple="true" class="mt-2" />
 
     <v-btn type="submit" color="primary" text="Create question" :disabled="loading" />
   </form>

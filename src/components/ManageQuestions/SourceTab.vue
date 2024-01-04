@@ -22,7 +22,7 @@ function createSource() {
 
 <template>
   <form @submit.prevent="createSource()">
-    <v-text-field v-model="newSource" label="Source" />
+    <v-text-field v-model="newSource" label="Source" class="mt-2" />
     <p class="text-red-500 font-semibold text-sm" v-if="saveError">{{ saveError }}</p>
     <v-btn type="submit" color="primary" text="Create Source" :disabled="loading" />
   </form>

@@ -16,7 +16,11 @@ function login() {
   error.value = ''
 
   authStore.login(email.value, password.value)
-    .then(() => router.push({ name: 'home' }))
+    .then(() => {
+      email.value = ''
+      password.value = ''
+      router.push({ name: 'home' })
+    })
     .catch((e) => error.value = e.message)
     .finally(() => submitting.value = false)
 }
@@ -25,8 +29,8 @@ function login() {
 <template>
     <Heading text="Log in" />
     <form @submit.prevent="login()">
-      <v-text-field type="email" label="Email address" v-model="email" />
-      <v-text-field type="password" label="Password" v-model="password" />
+      <v-text-field type="email" label="Email address" v-model="email" class="mt-2" />
+      <v-text-field type="password" label="Password" v-model="password" class="mt-2" />
       <p class="text-red-600 p-2" v-if="error">{{ error }}</p>
       <v-btn type="submit" color="primary" variant="tonal" text="Log in" :disabled="submitting" />
     </form>

@@ -15,20 +15,23 @@
 </script>
 
 <template>
-  <v-card variant="tonal" class="m-4">
-    <v-card-text class="flex gap-2 items-center">
-      <v-icon icon="mdi-chat-question-outline" />
-      {{ props.question }}
-    </v-card-text>
-    <v-card-text class="whitespace-break-spaces">
-      A: {{ props.answer }}
-    </v-card-text>
-    <v-card-text class="flex gap-2 flex-wrap" v-if="cards?.length || tags?.length">
+  <div class="border border-grey-500 rounded p-4 flex flex-col gap-4 shadow-md">
+    <p>Q: {{ props.question }}</p>
+
+    <p>
+      A: <span class="whitespace-break-spaces">{{ props.answer }}</span>
+    </p>
+
+    <p class="flex-grow"></p>
+    <v-divider class="invisible md:visible border-opacity-100" />
+
+    <p class="flex gap-2 flex-wrap" v-if="cards?.length || tags?.length">
       <VChip size="small" v-for="(card,key) in cards" :key="key" :text="card" variant="flat" />
       <VChip size="small" v-for="(tag,key) in tags" :key="key" :text="tag" variant="tonal" />
-    </v-card-text>
-    <v-card-text class="text-sm bg-grey-50">
+    </p>
+
+    <p class="text-sm bg-grey-50">
       Source: {{ source }}
-    </v-card-text>
-  </v-card>
+    </p>
+  </div>
 </template>

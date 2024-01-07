@@ -6,5 +6,7 @@ defineProps([
 </script>
 
 <template>
-  <router-link :to="to" v-text="text" class="underline font-semibold text-sky-600 hover:text-pink-600 transition-colors" />
+  <router-link :to="to" class="underline font-semibold text-sky-600 hover:text-pink-600 transition-colors">
+    {{ text }}
+  </router-link>
 </template>

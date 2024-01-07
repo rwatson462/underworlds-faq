@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useQuestionStore } from '@/stores/QuestionStore'
+import { useCardStore } from '@/stores/CardStore'
 import { ref } from 'vue'
 
-const questionStore = useQuestionStore()
+const cardStore = useCardStore()
 
 const newCard = ref('')
 const saveError = ref('')
@@ -15,7 +15,7 @@ function createCard() {
   loading.value = true
   saveError.value = ''
 
-  questionStore
+  cardStore
     .createCard(newCard.value)
     .then(() => {
       newCard.value = ''
@@ -38,7 +38,7 @@ function createCard() {
       <v-text-field v-model="filter" label="Search cards" class="mt-2" />
     </v-list-item>
     <v-list-item
-      v-for="(card, key) in questionStore.cards.filter(c => c.toLowerCase().includes(filter.toLowerCase()))"
+      v-for="(card, key) in cardStore.cards.filter(c => c.toLowerCase().includes(filter.toLowerCase()))"
       :key="key"
     >{{ card }}</v-list-item>
   </v-list>

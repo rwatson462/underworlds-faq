@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useQuestionStore } from '@/stores/QuestionStore'
 import { ref } from 'vue'
+import { useSourceStore } from '@/stores/SourceStore'
 
-const questionStore = useQuestionStore()
+const sourceStore = useSourceStore()
 
 const newSource = ref('')
 const saveError = ref('')
@@ -12,7 +12,7 @@ const showSnackbar = ref(false)
 function createSource() {
   loading.value = true
 
-  questionStore
+  sourceStore
     .createSource(newSource.value)
     .then(() => newSource.value = '')
     .catch(err => saveError.value = err)
@@ -28,7 +28,7 @@ function createSource() {
   </form>
   <v-list>
     <v-list-subheader>Existing Sources</v-list-subheader>
-    <v-list-item v-for="(source, key) in questionStore.sources" :key="key">{{ source }}</v-list-item>
+    <v-list-item v-for="(source, key) in sourceStore.sources" :key="key">{{ source }}</v-list-item>
   </v-list>
   <v-snackbar v-model="showSnackbar" color="primary" location="bottom right" :timeout="2000">
     New source saved

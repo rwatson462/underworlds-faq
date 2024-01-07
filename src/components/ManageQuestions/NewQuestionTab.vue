@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import { useQuestionStore } from '@/stores/QuestionStore'
+import { useCardStore } from '@/stores/CardStore'
 import { ref } from 'vue'
+import { useSourceStore } from '@/stores/SourceStore'
+import { useTagStore } from '@/stores/TagStore'
 
 const questionStore = useQuestionStore()
+const sourceStore = useSourceStore()
+const cardStore = useCardStore()
+const tagStore = useTagStore()
 
 const question = ref('')
 const answer = ref('')
@@ -37,9 +43,9 @@ function createQuestion() {
     <p v-if="saveError" class="text-red-500 font-semibold">{{ saveError }}</p>
     <v-textarea v-model="question" label="Question" class="mt-2" />
     <v-textarea v-model="answer" label="Answer" class="mt-2" />
-    <v-autocomplete label="Source" v-model="source" :items="questionStore.sources" class="mt-2" />
-    <v-autocomplete label="Cards" v-model="cards" :items="questionStore.cards" :multiple="true" class="mt-2" />
-    <v-autocomplete label="Tags" v-model="tags" :items="questionStore.tags" :multiple="true" class="mt-2" />
+    <v-autocomplete label="Source" v-model="source" :items="sourceStore.sources" class="mt-2" />
+    <v-autocomplete label="Cards" v-model="cards" :items="cardStore.cards" :multiple="true" class="mt-2" />
+    <v-autocomplete label="Tags" v-model="tags" :items="tagStore.tags" :multiple="true" class="mt-2" />
 
     <v-btn type="submit" color="primary" text="Create question" :disabled="loading" />
   </form>

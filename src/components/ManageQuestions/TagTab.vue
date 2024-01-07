@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useQuestionStore } from '@/stores/QuestionStore'
 import { ref } from 'vue'
+import { useTagStore } from '@/stores/TagStore'
 
-const questionStore = useQuestionStore()
+const tagStore = useTagStore()
 
 const newTag = ref('')
 const saveError = ref('')
@@ -14,11 +14,10 @@ function createTag() {
   loading.value = true
   saveError.value = ''
 
-  questionStore
+  tagStore
     .createTag(newTag.value)
     .then(() => {
       newTag.value = ''
-
     })
     .catch((err: string) => saveError.value = err)
     .finally(() => loading.value = false)
@@ -37,9 +36,17 @@ function createTag() {
       <v-text-field v-model="filter" label="Search tags" class="mt-2" />
     </v-list-item>
     <v-list-item
-      v-for="(tag, key) in questionStore.tags.filter(c => c.toLowerCase().includes(filter.toLowerCase()))"
+      v-for="(tag, key) in tagStore.tags.filter(c => c.toLowerCase().includes(filter.toLowerCase()))"
       :key="key"
-    >{{ tag }}</v-list-item>
+      class="hover:bg-gray-100"
+    >
+      <div class="flex justify-between items-center">
+        <span class="flex-grow">{{ tag }}</span>
+        <span>
+          <v-btn size="small" variant="flat" @click="tagStore.deleteTag(tag)" icon="mdi-delete" />
+        </span>
+      </div>
+    </v-list-item>
   </v-list>
   <v-snackbar v-model="showSnackbar" color="primary" location="bottom right" :timeout="2000">
     New tag saved

@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router'
 import Header from './components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import Snackbar from '@/components/Snackbar.vue'
 </script>
 
 <template>
@@ -15,5 +16,6 @@ import Footer from '@/components/Footer.vue'
     </v-main>
 
     <Footer />
+    <Snackbar />
   </v-app>
 </template>

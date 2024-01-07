@@ -4,11 +4,13 @@ import { useCardStore } from '@/stores/CardStore'
 import { ref } from 'vue'
 import { useSourceStore } from '@/stores/SourceStore'
 import { useTagStore } from '@/stores/TagStore'
+import { useSnackbarStore } from '@/stores/SnackbarStore'
 
 const questionStore = useQuestionStore()
 const sourceStore = useSourceStore()
 const cardStore = useCardStore()
 const tagStore = useTagStore()
+const snackbarStore = useSnackbarStore()
 
 const question = ref('')
 const answer = ref('')
@@ -17,7 +19,6 @@ const cards = ref<string[]>([])
 const tags = ref<string[]>([])
 const saveError = ref('')
 const loading = ref(false)
-const showSnackbar = ref(false)
 
 function createQuestion() {
   loading.value = true
@@ -31,7 +32,7 @@ function createQuestion() {
       cards.value = []
       tags.value = []
 
-      showSnackbar.value = true
+      snackbarStore.trigger({ text: 'Question saved!' })
     })
     .catch((error: string) => saveError.value = error)
     .finally(() => loading.value = false)
@@ -49,10 +50,4 @@ function createQuestion() {
 
     <v-btn type="submit" color="primary" text="Create question" :disabled="loading" />
   </form>
-  <v-snackbar v-model="showSnackbar" color="primary" location="bottom right" :timeout="2000">
-    New question saved
-    <template v-slot:actions>
-      <v-btn variant="text" @click="showSnackbar = false" text="Close" />
-    </template>
-  </v-snackbar>
 </template>

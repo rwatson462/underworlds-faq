@@ -25,6 +25,18 @@ import { route } from '@/helpers/route'
       <div>
         <p>
           <span class="rounded-r px-2 py-1 bg-sky-400 text-white">
+            Sunday 7th January 2024
+          </span>
+        </p>
+        <ul class="list-disc list-outside pl-6 py-1">
+          <li>Added the rest of the questions from Previous Seasons Designer's Commentary</li>
+          <li>Lots of behind the scenes work so I can update entries easily</li>
+          <li>Acquired all previous FAQ documents so will start merging those in soon</li>
+        </ul>
+      </div>
+      <div>
+        <p>
+          <span class="rounded-r px-2 py-1 bg-sky-400 text-white">
             Saturday 6th January 2024
           </span>
         </p>

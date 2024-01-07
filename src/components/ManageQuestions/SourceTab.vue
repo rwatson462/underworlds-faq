@@ -34,7 +34,7 @@ function deleteSource(source: string) {
   sourceStore
     .deleteSource(source)
     .then(() => snackbarStore.trigger({
-      text: '',
+      text: 'Source [' + source + '] deleted',
       color: 'error'
     }))
 }

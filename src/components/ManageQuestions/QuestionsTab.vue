@@ -2,17 +2,9 @@
 import { useQuestionStore } from '@/stores/QuestionStore'
 import { computed, ref } from 'vue'
 import type { Question } from '@/types'
-import { useSourceStore } from '@/stores/SourceStore'
-import { useCardStore } from '@/stores/CardStore'
-import { useTagStore } from '@/stores/TagStore'
-import { useSnackbarStore } from '@/stores/SnackbarStore'
-
-const snackbarStore = useSnackbarStore()
+import UpdateQuestionDialog from '@/components/Dialogs/UpdateQuestionDialog.vue'
 
 const questionStore = useQuestionStore()
-const sourceStore = useSourceStore()
-const cardStore = useCardStore()
-const tagStore = useTagStore()
 
 const editQuestionForm = ref<Question>({
   id: 0,
@@ -78,13 +70,6 @@ function cancelEditQuestionModal() {
   showEditQuestionModal.value = false
 }
 
-function saveQuestion() {
-  questionStore
-    .updateQuestion(editQuestionForm.value)
-    .then(() => snackbarStore.trigger({ text: 'Card updated' }))
-  cancelEditQuestionModal()
-}
-
 </script>
 
 <template>
@@ -114,27 +99,6 @@ function saveQuestion() {
         </td>
       </tr>
     </tbody>
+    <UpdateQuestionDialog :edit-question-form="editQuestionForm" :show-edit-question-modal="showEditQuestionModal" @close-modal="cancelEditQuestionModal" />
   </v-table>
-
-  <v-dialog v-model="showEditQuestionModal">
-    <form @submit.prevent="saveQuestion()">
-      <v-card>
-        <v-card-title>Edit Question</v-card-title>
-
-        <v-card-text>
-          <p>{{ editQuestionForm.id }}</p>
-          <v-textarea v-model="editQuestionForm.question" class="mt-2" label="Question" />
-          <v-textarea v-model="editQuestionForm.answer" class="mt-2" label="Answer" />
-          <v-autocomplete label="Source" v-model="editQuestionForm.source" :items="sourceStore.sources" class="mt-2" />
-          <v-autocomplete label="Cards" v-model="editQuestionForm.cards" :items="cardStore.cards" :multiple="true" class="mt-2" />
-          <v-autocomplete label="Tags" v-model="editQuestionForm.tags" :items="tagStore.tags" :multiple="true" class="mt-2" />
-        </v-card-text>
-
-        <v-card-actions class="flex justify-between">
-          <v-btn text="Save" type="submit" variant="flat" color="primary" />
-          <v-btn text="Cancel" variant="text" @click="cancelEditQuestionModal()" />
-        </v-card-actions>
-      </v-card>
-    </form>
-  </v-dialog>
 </template>

@@ -38,11 +38,16 @@ export const routes = [
         component: () => import('../pages/QuestionsPage.vue')
     },
     {
-        path: '/manage-questions',
-        name: 'manage-questions',
-        component: () => import('../pages/ManageQuestionsPage.vue'),
+        path: '/manage',
+        name: 'manage',
+        component: () => import('../pages/ManagePage.vue'),
         meta: {
             requiresAuth: true,
         },
+    },
+    {
+        path: '/rules-updates',
+        name: 'rules-updates',
+        component: () => import('../pages/RulesUpdatesPage.vue'),
     }
 ] as const

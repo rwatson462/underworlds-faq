@@ -70,7 +70,3 @@ import { route } from '@/helpers/route'
     </section>
   </div>
 </template>
-
-<style scoped>
-
-</style>

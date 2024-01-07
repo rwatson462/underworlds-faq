@@ -40,7 +40,3 @@ const tab = ref('new-question')
     </v-window>
   </div>
 </template>
-
-<style scoped>
-
-</style>

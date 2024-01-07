@@ -49,7 +49,3 @@ function createCard() {
     </template>
   </v-snackbar>
 </template>
-
-<style scoped>
-
-</style>

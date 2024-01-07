@@ -42,7 +42,3 @@ function login() {
     </form>
 
 </template>
-
-<style scoped>
-
-</style>

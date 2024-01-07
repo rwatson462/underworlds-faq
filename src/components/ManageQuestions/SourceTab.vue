@@ -37,7 +37,3 @@ function createSource() {
     </template>
   </v-snackbar>
 </template>
-
-<style scoped>
-
-</style>

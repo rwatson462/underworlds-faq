@@ -39,7 +39,3 @@ function registerUser() {
     </v-card>
   </form>
 </template>
-
-<style scoped>
-
-</style>

@@ -55,7 +55,3 @@ function createTag() {
     </template>
   </v-snackbar>
 </template>
-
-<style scoped>
-
-</style>

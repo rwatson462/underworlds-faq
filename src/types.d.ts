@@ -1,4 +1,5 @@
 export type Question = {
+  id?: number,
   question: string,
   answer: string,
   source: string,

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, toRaw } from 'vue'
 import type { Question } from '@/types'
 import { supabaseClient } from '@/helpers/supabaseClient'
 
@@ -22,6 +22,7 @@ export const useQuestionStore = defineStore(
           }
 
           questions.value = data.map((question): Question => ({
+            id: question.id,
             question: question.question,
             answer: question.answer,
             source: question.source,
@@ -50,6 +51,26 @@ export const useQuestionStore = defineStore(
       })
     }
 
+    async function updateQuestion(question: Question) {
+      return supabase
+        .from('compiled_questions')
+        .update({
+          question: question.question,
+          answer: question.answer,
+          source: question.source,
+          cards: JSON.stringify(question.cards),
+          tags: JSON.stringify(question.tags),
+        })
+        .eq('id', question.id)
+        .then(({ error }) => {
+          if (error) {
+            throw new Error(error.message)
+          }
+
+          loadQuestions()
+        })
+    }
+
     async function deleteQuestion(question: string) {
       return supabase
         .from('compiled_questions')
@@ -68,6 +89,7 @@ export const useQuestionStore = defineStore(
       questions,
       createQuestion,
       deleteQuestion,
+      updateQuestion,
     }
   }
 )

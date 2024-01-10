@@ -23,9 +23,6 @@ function login() {
       router.push({ name: 'home' })
     })
     .catch((e) => {
-      // out of interest, track unsuccessful login attempts
-      track('unsuccessful_login', { email: email.value })
-
       error.value = e.message
     })
     .finally(() => submitting.value = false)

@@ -54,10 +54,6 @@ function debounce(callback: (...args: any[]) => void, delay: number) {
   }
 }
 
-watch(search, debounce((query: string) => {
-  track('search', { query })
-}, 3000))
-
 </script>
 
 <template>

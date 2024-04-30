@@ -7,6 +7,9 @@ import TagTab from '@/components/ManageQuestions/TagTab.vue'
 import CardTab from '@/components/ManageQuestions/CardTab.vue'
 import QuestionsTab from '@/components/ManageQuestions/QuestionsTab.vue'
 import RulesTab from '@/components/RulesTab.vue'
+import { useFeature } from '@/helpers/useFeature'
+
+const rulesFeatureEnabled = useFeature('rules')
 
 const tab = ref('new-question')
 </script>
@@ -20,7 +23,7 @@ const tab = ref('new-question')
       <v-tab value="sources">Sources</v-tab>
       <v-tab value="tags">Tags</v-tab>
       <v-tab value="questions">Questions</v-tab>
-      <v-tab value="rules">Rules Updates</v-tab>
+      <v-tab value="rules" v-if="rulesFeatureEnabled">Rules Updates</v-tab>
     </v-tabs>
 
     <v-window v-model="tab">
@@ -39,7 +42,7 @@ const tab = ref('new-question')
       <v-window-item value="questions">
         <QuestionsTab />
       </v-window-item>
-      <v-window-item value="rules">
+      <v-window-item value="rules" v-if="rulesFeatureEnabled">
         <RulesTab />
       </v-window-item>
     </v-window>

@@ -53,11 +53,11 @@ const news: {
 </script>
 
 <template>
-  <section class="space-y-4">
-    <p class="px-2 py-2 text-lg font-semibold">
+  <section>
+    <p class="px-2 py-2 text-lg font-semibold mb-4">
       Latest updates
     </p>
-    <div v-for="(singleNews, key) of news" v-bind:key="key">
+    <div v-for="(singleNews, key) of news" v-bind:key="key" class="mb-8">
       <LatestUpdateItem :date="singleNews.date" :items="singleNews.items" />
     </div>
   </section>

@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import ExternalLink from '@/components/ExternalLink.vue'
 import Heading from '@/components/Heading.vue'
 import InternalLink from '@/components/InternalLink.vue'
 import { route } from '@/helpers/route'
+import Sources from '@/components/HomePage/Sources.vue'
+import { useFeature } from '@/helpers/useFeature'
+import News from '@/components/HomePage/News.vue'
+
+const rulesFeatureEnabled = useFeature('rules')
+
 </script>
 
 <template>
@@ -10,75 +15,21 @@ import { route } from '@/helpers/route'
     <section class="flex flex-col gap-4">
       <Heading text="Welcome to Underworlds FAQ" />
       <p>
-        Underworlds FAQ is an easy-to-use FAQ presentation for Warhammer Underworlds by Games Workshop, released
-        January 1st 2024 and contains Designer's Commentary from December 2023.
+        Underworlds FAQ is an easy-to-use presentation of the Frequently Asked Questions and Designer's Commentary
+        for Warhammer Underworlds by Games Workshop, updated frequently throughout the year.
       </p>
-      <p>
-        <InternalLink :to="route('questions')" text="Get started here" />
+      <div class="flex">
+        <div class="text-lg rounded-lg shadow border px-6 py-4 hover:bg-pink-50 relative">
+          👋&nbsp;
+          <InternalLink :to="route('questions')" text="FAQs: Get started here" />
+          <router-link :to="route('questions')" class="absolute inset-0" />
+        </div>
+      </div>
+      <p v-if="rulesFeatureEnabled">
+        <InternalLink :to="route('rules-updates')" text="Rules updates" />
       </p>
     </section>
-
-    <section class="space-y-4">
-      <p class="px-2 py-2 text-lg font-semibold">
-        Latest updates
-      </p>
-      <div>
-        <p>
-          <span class="rounded-r px-2 py-1 bg-sky-400 text-white">
-            Sunday 7th January 2024
-          </span>
-        </p>
-        <ul class="list-disc list-outside pl-6 py-1">
-          <li>Added the rest of the questions from Previous Seasons Designer's Commentary</li>
-          <li>Lots of behind the scenes work so I can update entries easily</li>
-          <li>Acquired all previous FAQ documents so will start merging those in soon</li>
-        </ul>
-      </div>
-      <div>
-        <p>
-          <span class="rounded-r px-2 py-1 bg-sky-400 text-white">
-            Saturday 6th January 2024
-          </span>
-        </p>
-        <ul class="list-disc list-outside pl-6 py-1">
-          <li>Added questions up to page 16 of Previous Seasons Designer's Commentary</li>
-          <li>Added this section where I can share latest updates 😀</li>
-          <li>Updated the view of questions to hopefully make them clearer and less dull/grey</li>
-        </ul>
-      </div>
-      <div>
-        <p>
-          <span class="rounded-r px-2 py-1 bg-sky-400 text-white">
-            Monday 1st January 2024
-          </span>
-        </p>
-        <ul class="list-disc list-outside pl-6 py-1">
-          <li>Initial launch!</li>
-          <li>Included all questions from Current Season Designer's Commentary</li>
-          <li>Included pages 1-5 of Previous Seasons Designer's Commentary</li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <p>Sources:</p>
-      <ul class="list-disc list-inside">
-<!--        <li>-->
-<!--          <ExternalLink to="https://www.warhammer-community.com/wp-content/uploads/2022/10/3o0MaTmdQ3vUgqYa.pdf"-->
-<!--                        text="Rules Update, December 2023" />-->
-<!--          (pdf)-->
-<!--        </li>-->
-        <li>
-          <ExternalLink to="https://www.warhammer-community.com/wp-content/uploads/2022/10/nC1X3OxTXkVbNMPj.pdf"
-                        text="Designer's Commentary, December 2023" />
-          (pdf)
-        </li>
-        <li>
-          <ExternalLink to="https://www.warhammer-community.com/wp-content/uploads/2022/10/qLeKiJExZOaKQvYZ.pdf"
-                        text="Previous Seasons Designer’s Commentary, December 2023" />
-          (pdf)
-        </li>
-      </ul>
-    </section>
+    <News />
+    <Sources />
   </div>
 </template>

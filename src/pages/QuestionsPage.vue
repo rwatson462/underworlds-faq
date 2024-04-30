@@ -2,8 +2,7 @@
 import QuestionAnswer from '@/components/QuestionAnswer.vue'
 import { useQuestionStore } from '@/stores/QuestionStore'
 import Heading from '@/components/Heading.vue'
-import { computed, ref, watch } from 'vue'
-import { track } from '@vercel/analytics'
+import { computed, ref } from 'vue'
 
 const questionStore = useQuestionStore()
 
@@ -45,14 +44,15 @@ const filtered = computed(() => questionStore.questions.filter(({ question, answ
   return matches.length === words.length
 }))
 
-function debounce(callback: (...args: any[]) => void, delay: number) {
-  let timeout: number;
-
-  return function(...args: any[]) {
-    window.clearTimeout(timeout)
-    timeout = window.setTimeout(() => callback(...args), delay)
-  }
-}
+// todo: implement this somehow
+// function debounce(callback: (...args: any[]) => void, delay: number) {
+//   let timeout: number;
+//
+//   return function(...args: any[]) {
+//     window.clearTimeout(timeout)
+//     timeout = window.setTimeout(() => callback(...args), delay)
+//   }
+// }
 
 </script>
 
@@ -70,7 +70,7 @@ function debounce(callback: (...args: any[]) => void, delay: number) {
     </div>
   </section>
 
-  <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
     <QuestionAnswer v-for="(question, key) in filtered" :key="key"
                     :question="question.question"
                     :answer="question.answer"

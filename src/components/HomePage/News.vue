@@ -4,13 +4,11 @@ import { useFeature } from '@/helpers/useFeature'
 
 const rulesFeatureEnabled = useFeature('rules')
 
-interface News {
+const news: {
   date: string;
   items: string[];
   show?: boolean;
-}
-
-const news: News[] = [
+}[] = [
   {
     date: 'xxx',
     items: [
@@ -18,6 +16,13 @@ const news: News[] = [
       'Added Rules updates from January 2024',
     ],
     show: rulesFeatureEnabled,
+  },
+  {
+    date: 'Tuesday 30th April 2024',
+    items: [
+      "Added all new FAQ questions from latest Designer's Commentary",
+      "Added all new FAQ questions from latest Previous Designer's Commentary"
+    ]
   },
   {
     date: 'Sunday 7th January 2024',
@@ -43,7 +48,7 @@ const news: News[] = [
       "Included pages 1-5 of Previous Seasons Designer's Commentary",
     ]
   }
-]
+].filter(news => news.show ?? true)
 
 </script>
 
@@ -52,6 +57,8 @@ const news: News[] = [
     <p class="px-2 py-2 text-lg font-semibold">
       Latest updates
     </p>
-    <LatestUpdateItem v-for="(singleNews, key) of news" v-bind:key="key" :date="singleNews.date" :items="singleNews.items" :v-if="singleNews.show ?? true" />
+    <div v-for="(singleNews, key) of news" v-bind:key="key">
+      <LatestUpdateItem :date="singleNews.date" :items="singleNews.items" />
+    </div>
   </section>
 </template>

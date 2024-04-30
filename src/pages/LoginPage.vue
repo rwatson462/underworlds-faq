@@ -3,7 +3,6 @@ import { useAuthStore } from '@/stores/AuthStore'
 import { ref } from 'vue'
 import { router } from '@/router/router'
 import Heading from '@/components/Heading.vue'
-import { track } from '@vercel/analytics'
 
 const authStore = useAuthStore()
 

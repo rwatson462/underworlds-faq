@@ -8,7 +8,7 @@ export default {
     extend: {
     },
     font: {
-      default: 'Roboto'
+      default: 'Noto Sans'
     }
   },
   plugins: [],

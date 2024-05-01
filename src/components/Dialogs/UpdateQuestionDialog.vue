@@ -29,7 +29,7 @@ function saveQuestion() {
 </script>
 
 <template>
-  <v-dialog :model-value="props.showEditQuestionModal" @update:model-value="emit('close-modal')">
+  <v-dialog :model-value="props.showEditQuestionModal" @update:model-value="emit('close-modal')" width="768px">
     <form @submit.prevent="saveQuestion()">
       <v-card>
         <v-card-title>Edit Question</v-card-title>

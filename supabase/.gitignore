@@ -1,0 +1,7 @@
+# Supabase
+.branches
+.temp
+.env
+
+# Local dump of the prod database, probably shouldn't commit this
+dump-data.sql

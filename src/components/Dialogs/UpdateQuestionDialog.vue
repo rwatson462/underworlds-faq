@@ -32,9 +32,10 @@ function saveQuestion() {
   <v-dialog :model-value="props.showEditQuestionModal" @update:model-value="emit('close-modal')" width="768px">
     <form @submit.prevent="saveQuestion()">
       <v-card>
-        <v-card-title>Edit Question</v-card-title>
+        <v-card-title class="bg-sky-500 text-white">Edit Question</v-card-title>
 
         <v-card-text>
+          <p class="pb-2">Type: {{ editQuestionForm.entry_type }}</p>
           <v-textarea v-model="editQuestionForm.question" class="mt-2" label="Question" />
           <v-textarea v-model="editQuestionForm.answer" class="mt-2" label="Answer" />
           <v-autocomplete label="Source" v-model="editQuestionForm.source" :items="sourceStore.sources" class="mt-2" />

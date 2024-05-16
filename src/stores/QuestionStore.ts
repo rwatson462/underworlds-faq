@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { Question } from '@/types'
+import type { EntryType, Question } from '@/types'
 import { supabaseClient } from '@/helpers/supabaseClient'
 
 export const useQuestionStore = defineStore(
@@ -30,13 +30,14 @@ export const useQuestionStore = defineStore(
         })
     }
 
-    async function createQuestion(question: string, answer: string, source: string, cards: string[]|null = null, tags: string[] | null = null) {
+    async function createQuestion(question: string, answer: string, source: string, entry_type: EntryType, cards: string[]|null = null, tags: string[] | null = null) {
       return await supabase
         .from('compiled_questions')
         .insert({
           question,
           answer,
           source,
+          entry_type,
           cards: JSON.stringify(cards),
           tags: JSON.stringify(tags),
         })
@@ -56,6 +57,7 @@ export const useQuestionStore = defineStore(
           question: question.question,
           answer: question.answer,
           source: question.source,
+          entry_type: question.entry_type ?? 'faq',
           cards: JSON.stringify(question.cards),
           tags: JSON.stringify(question.tags),
         })

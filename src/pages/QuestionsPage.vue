@@ -8,41 +8,7 @@ const questionStore = useQuestionStore()
 
 const search = ref('')
 
-const filtered = computed(() => questionStore.questions.filter(({ question, answer, cards, tags }) => {
-  // If nothing but whitespace is in the search box, return all results
-  if (search.value.trim() === '') {
-    return true
-  }
-
-  // Break down the search into words then check for each word in the questions
-  const words = search.value.trim().split(' ').map(s => s.trim()).filter(s => s.length > 0).map(s => s.toLowerCase())
-
-  const matches = words.filter(word => {
-    if (question.toLowerCase().includes(word)) {
-      return true
-    }
-
-    if (answer.toLowerCase().includes(word)) {
-      return true
-    }
-
-    for (const card of cards ?? []) {
-      if (card.toLowerCase().includes(word)) {
-        return true
-      }
-    }
-
-    for (const tag of tags ?? []) {
-      if (tag.toLowerCase().includes(word)) {
-        return true
-      }
-    }
-
-    return false
-  })
-
-  return matches.length === words.length
-}))
+const filtered = computed(() => questionStore.searchQuestions(search.value))
 
 // todo: implement this somehow
 // function debounce(callback: (...args: any[]) => void, delay: number) {
@@ -72,12 +38,13 @@ const filtered = computed(() => questionStore.questions.filter(({ question, answ
 
   <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
     <QuestionAnswer v-for="(question, key) in filtered" :key="key"
-                    :question="question.question"
-                    :answer="question.answer"
-                    :source="question.source"
-                    :cards="question.cards"
-                    :tags="question.tags"
-                    :search="search"
+      :question="question.question"
+      :answer="question.answer"
+      :entry_type="question.entry_type"
+      :source="question.source"
+      :cards="question.cards"
+      :tags="question.tags"
+      :search="search"
     />
   </section>
 </template>

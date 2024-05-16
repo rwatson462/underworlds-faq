@@ -13,6 +13,7 @@ const editQuestionForm = ref<Question>({
   source: '',
   cards: [],
   tags: [],
+  entry_type: 'faq',
 })
 
 const showEditQuestionModal = ref(false)
@@ -66,6 +67,7 @@ function cancelEditQuestionModal() {
     source: '',
     cards: [],
     tags: [],
+    entry_type: 'faq',
   }
   showEditQuestionModal.value = false
 }

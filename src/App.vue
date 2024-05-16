@@ -10,7 +10,7 @@ import Snackbar from '@/components/Snackbar.vue'
     <Header />
 
     <v-main class="bg-gradient-to-br from-orange-300 to-pink-400">
-      <v-sheet class="m-1 md:m-4 lg:m-8 p-4" elevation="2" rounded>
+      <v-sheet class="m-1 md:m-4 lg:m-8 p-8" elevation="2" rounded>
         <RouterView />
       </v-sheet>
     </v-main>

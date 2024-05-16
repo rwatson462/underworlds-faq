@@ -45,9 +45,4 @@ export const routes = [
             requiresAuth: true,
         },
     },
-    {
-        path: '/rules-updates',
-        name: 'rules-updates',
-        component: () => import('../pages/RulesUpdatesPage.vue'),
-    }
 ] as const

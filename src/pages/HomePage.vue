@@ -3,11 +3,7 @@ import Heading from '@/components/Heading.vue'
 import InternalLink from '@/components/InternalLink.vue'
 import { route } from '@/helpers/route'
 import Sources from '@/components/HomePage/Sources.vue'
-import { useFeature } from '@/helpers/useFeature'
 import News from '@/components/HomePage/News.vue'
-
-const rulesFeatureEnabled = useFeature('rules')
-
 </script>
 
 <template>
@@ -25,9 +21,6 @@ const rulesFeatureEnabled = useFeature('rules')
           <router-link :to="route('questions')" class="absolute inset-0" />
         </div>
       </div>
-      <p v-if="rulesFeatureEnabled">
-        <InternalLink :to="route('rules-updates')" text="Rules updates" />
-      </p>
     </section>
     <News />
     <Sources />

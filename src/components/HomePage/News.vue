@@ -1,21 +1,16 @@
 <script setup lang="ts">
 import LatestUpdateItem from '@/components/HomePage/LatestUpdateItem.vue'
-import { useFeature } from '@/helpers/useFeature'
-
-const rulesFeatureEnabled = useFeature('rules')
 
 const news: {
   date: string;
   items: string[];
-  show?: boolean;
 }[] = [
   {
-    date: 'xxx',
+    date: 'Thursday 16th May 2024',
     items: [
-      'Added Rules updates from December 2023',
-      'Added Rules updates from January 2024',
-    ],
-    show: rulesFeatureEnabled,
+      'Updated the site with the ability to add Rules Errata',
+      'We\'ll be updating the site over the coming days to add the rules changes',
+    ]
   },
   {
     date: 'Tuesday 30th April 2024',
@@ -48,7 +43,7 @@ const news: {
       "Included pages 1-5 of Previous Seasons Designer's Commentary",
     ]
   }
-].filter(news => news.show ?? true)
+]
 
 </script>
 

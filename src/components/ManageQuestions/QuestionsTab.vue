@@ -20,44 +20,22 @@ const editQuestionForm = ref<Question>({
 const showEditQuestionModal = ref(false)
 
 const search = ref('')
-const filtered = computed<Question[]>(() => questionStore.questions.filter(({ question, answer, cards, tags }) => {
-  // If nothing but whitespace is in the search box, return all results
-  if (search.value.trim() === '') {
-    return true
+const filtered = computed(() => questionStore.searchQuestions(search.value))
+
+function deleteQuestion(id: number | undefined) {
+  if (id === undefined) {
+    throw new Error('ID is undefined')
   }
 
-  // Break down the search into words then check for each word in the questions
-  const words = search.value.trim().split(' ').map(s => s.trim()).filter(s => s.length > 0).map(s => s.toLowerCase())
+  questionStore.deleteQuestion(id)
+}
 
-  const matches = words.filter(word => {
-    if (question.toLowerCase().includes(word)) {
-      return true
-    }
+function showEditModal(id: number | undefined) {
+  if (id === undefined) {
+    throw new Error('Question ID is undefined')
+  }
 
-    if (answer.toLowerCase().includes(word)) {
-      return true
-    }
-
-    for (const card of cards ?? []) {
-      if (card.toLowerCase().includes(word)) {
-        return true
-      }
-    }
-
-    for (const tag of tags ?? []) {
-      if (tag.toLowerCase().includes(word)) {
-        return true
-      }
-    }
-
-    return false
-  })
-
-  return matches.length === words.length
-}))
-
-function showEditModal(question: string) {
-  editQuestionForm.value = questionStore.questions.find(q => q.question === question)!
+  editQuestionForm.value = questionStore.questions.find(q => q.id === id)!
   showEditQuestionModal.value = true
 }
 
@@ -97,8 +75,8 @@ function cancelEditQuestionModal() {
         <td class="whitespace-pre">{{ (question.cards ?? []).join('\n') }}</td>
         <td class="whitespace-pre">{{ (question.tags ?? []).join('\n') }}</td>
         <td class="text-no-wrap">
-          <v-btn size="small" variant="flat" @click="showEditModal(question.question)" icon="mdi-circle-edit-outline" />
-          <v-btn size="small" variant="flat" @click="questionStore.deleteQuestion(question.question)" icon="mdi-close" />
+          <v-btn size="small" variant="flat" @click="showEditModal(question.id)" icon="mdi-circle-edit-outline" />
+          <v-btn size="small" variant="flat" @click="deleteQuestion(question.id)" icon="mdi-close" />
         </td>
       </tr>
     </tbody>

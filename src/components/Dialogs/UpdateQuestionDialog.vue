@@ -21,7 +21,7 @@ const props = defineProps([
 
 function saveQuestion() {
   questionStore
-    .updateQuestion(props.editQuestionForm)
+    .updateQuestion(props.editQuestionForm.id, props.editQuestionForm)
     .then(() => snackbarStore.trigger({ text: 'Card updated' }))
   emit('close-modal')
 }

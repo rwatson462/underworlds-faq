@@ -50,7 +50,7 @@ export const useQuestionStore = defineStore(
       })
     }
 
-    async function updateQuestion(question: Question) {
+    async function updateQuestion(id: number, question: Question) {
       return supabase
         .from('compiled_questions')
         .update({
@@ -61,7 +61,7 @@ export const useQuestionStore = defineStore(
           cards: JSON.stringify(question.cards),
           tags: JSON.stringify(question.tags),
         })
-        .eq('id', question.id)
+        .eq('id', id)
         .then(({ error }) => {
           if (error) {
             throw new Error(error.message)
@@ -71,17 +71,17 @@ export const useQuestionStore = defineStore(
         })
     }
 
-    async function deleteQuestion(question: string) {
+    async function deleteQuestion(id: number) {
       return supabase
         .from('compiled_questions')
         .delete()
-        .eq('question', question)
+        .eq('id', id)
         .then(({ error }) => {
           if (error) {
             throw new Error(error.message)
           }
 
-          questions.value = questions.value.filter(existingQuestion => existingQuestion.question !== question)
+          questions.value = questions.value.filter(existingQuestion => existingQuestion.id !== id)
         })
     }
 

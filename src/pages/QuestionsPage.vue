@@ -37,21 +37,21 @@ const filtered = computed(() => questionStore.searchQuestions(search.value, filt
         <div class="flex gap-2">
           <button
             class="rounded bg-slate-200 hover:bg-slate-300 shadow text-slate-900 px-2 py-1"
-            :class="filter === 'faq' ? 'bg-sky-300' : ''"
+            :class="filter === 'faq' ? 'border border-sky-500' : ''"
             type="button"
             @click="filter = 'faq'"
           >FAQs
           </button>
           <button
             class="rounded bg-slate-200 hover:bg-slate-300 shadow text-slate-900 px-2 py-1"
-            :class="filter === 'errata' ? 'bg-sky-300' : ''"
+            :class="filter === 'errata' ? 'border border-sky-500' : ''"
             type="button"
             @click="filter = 'errata'">Rules Errata
           </button>
         </div>
         <button
           class="rounded bg-slate-200 hover:bg-slate-300 shadow text-slate-900 px-2 py-1"
-          :class="filter === 'all' ? 'bg-sky-300' : ''"
+          :class="filter === 'all' ? 'border border-sky-500' : ''"
           type="button"
           @click="filter = 'all'">Both
         </button>

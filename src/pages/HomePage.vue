@@ -4,6 +4,7 @@ import InternalLink from '@/components/InternalLink.vue'
 import { route } from '@/helpers/route'
 import Sources from '@/components/HomePage/Sources.vue'
 import News from '@/components/HomePage/News.vue'
+import ExternalLink from '@/components/ExternalLink.vue'
 </script>
 
 <template>
@@ -15,12 +16,15 @@ import News from '@/components/HomePage/News.vue'
         for Warhammer Underworlds by Games Workshop, updated frequently throughout the year.
       </p>
       <div class="flex">
-        <div class="text-lg rounded-lg shadow border px-6 py-4 hover:bg-pink-50 relative">
+        <div class="transition-colors text-lg rounded-lg shadow border px-6 py-4 hover:bg-pink-50 relative">
           👋&nbsp;
           <InternalLink :to="route('questions')" text="FAQs: Get started here" />
           <router-link :to="route('questions')" class="absolute inset-0" />
         </div>
       </div>
+      <p>
+        Go build your deck on <ExternalLink to="https://www.underworldsdb.com" text="UnderworldsDB" />!
+      </p>
     </section>
     <News />
     <Sources />

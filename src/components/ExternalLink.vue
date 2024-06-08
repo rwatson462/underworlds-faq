@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const {to, text} = defineProps([
-  'to',
-  'text'
-])
+const {to, text} = defineProps<{
+  text: string;
+  to: string;
+}>()
 </script>
 
 <template>

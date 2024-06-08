@@ -85,11 +85,26 @@ export const useQuestionStore = defineStore(
         })
     }
 
-    function searchQuestions(search: string) {
+    function searchQuestions(search: string, filter: 'faq'|'errata'|'all') {
+      function shouldIncludeBasedOnFilter({ answer }: Partial<Question>): boolean {
+        if (filter === 'errata') {
+          return answer === ''
+        }
+
+        if (filter === 'faq') {
+          return answer !== ''
+        }
+
+        return true
+      }
+
       return questions.value.filter(({ question, answer, cards, tags }) => {
+        // apply card type filter first
+        const includeFromFilter = shouldIncludeBasedOnFilter({ question, answer, cards, tags })
+
         // If nothing but whitespace is in the search box, return all results
         if (search.trim() === '') {
-          return true
+          return includeFromFilter
         }
 
         // Break down the search into words then check for each word in the questions
@@ -97,29 +112,29 @@ export const useQuestionStore = defineStore(
 
         const matches = words.filter(word => {
           if (question.toLowerCase().includes(word)) {
-            return true
+            return includeFromFilter
           }
 
           if (answer.toLowerCase().includes(word)) {
-            return true
+            return includeFromFilter
           }
 
           for (const card of cards ?? []) {
             if (card.toLowerCase().includes(word)) {
-              return true
+              return includeFromFilter
             }
           }
 
           for (const tag of tags ?? []) {
             if (tag.toLowerCase().includes(word)) {
-              return true
+              return includeFromFilter
             }
           }
 
           return false
         })
 
-        return matches.length === words.length
+        return includeFromFilter && matches.length === words.length
       })
     }
 

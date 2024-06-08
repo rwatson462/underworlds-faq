@@ -6,6 +6,14 @@ const news: {
   items: string[];
 }[] = [
   {
+    date: 'Saturday 8th June 2024',
+    items: [
+      'Added a filter to toggle between FAQs and Rules Errata',
+      'All Errata are now added to the site',
+      'Added a link to UnderworldsDB - a great place to build your deck!'
+    ]
+  },
+  {
     date: 'Thursday 16th May 2024',
     items: [
       'Updated the site with the ability to add Rules Errata',

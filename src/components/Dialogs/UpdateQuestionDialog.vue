@@ -5,6 +5,7 @@ import { useCardStore } from '@/stores/CardStore'
 import { useTagStore } from '@/stores/TagStore'
 import { useQuestionStore } from '@/stores/QuestionStore'
 import { useSnackbarStore } from '@/stores/SnackbarStore'
+import type { Question } from '@/types'
 
 const emit = defineEmits(['close-modal'])
 
@@ -14,14 +15,14 @@ const tagStore = useTagStore()
 const questionStore = useQuestionStore()
 const snackbarStore = useSnackbarStore()
 
-const props = defineProps([
-  'editQuestionForm',
-  'showEditQuestionModal'
-])
+const props = defineProps<{
+  editQuestionForm: Question;
+  showEditQuestionModal: boolean;
+}>()
 
 function saveQuestion() {
   questionStore
-    .updateQuestion(props.editQuestionForm.id, props.editQuestionForm)
+    .updateQuestion(props.editQuestionForm.id!, props.editQuestionForm)
     .then(() => snackbarStore.trigger({ text: 'Card updated' }))
   emit('close-modal')
 }

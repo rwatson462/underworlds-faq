@@ -20,7 +20,7 @@ const editQuestionForm = ref<Question>({
 const showEditQuestionModal = ref(false)
 
 const search = ref('')
-const filtered = computed(() => questionStore.searchQuestions(search.value))
+const filtered = computed(() => questionStore.searchQuestions(search.value, 'all'))
 
 function deleteQuestion(id: number | undefined) {
   if (id === undefined) {

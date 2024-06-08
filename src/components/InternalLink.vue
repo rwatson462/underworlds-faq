@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import type { RouteName } from '@/router/routes'
+import { route } from '@/helpers/route'
+
 defineProps<{
-  to: string | {name: string, params: Record<string, string>};
+  to: RouteName | ReturnType<typeof route>;
   text: string;
 }>()
 </script>

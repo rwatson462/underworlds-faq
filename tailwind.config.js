@@ -4,6 +4,10 @@ export default {
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}'
   ],
+  safelist: [
+    'border-2',
+    'border-sky-500',
+  ],
   theme: {
     extend: {
     },

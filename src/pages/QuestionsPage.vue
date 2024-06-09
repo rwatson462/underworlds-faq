@@ -26,32 +26,32 @@ const filtered = computed(() => questionStore.searchQuestions(search.value, filt
 </script>
 
 <template>
-  <div class="flex gap-6 items-start pb-4">
-    <div class="flex flex-column">
+  <div class="flex gap-6 items-start pb-4 flex-col sm:flex-row flex-no-wrap">
+    <div>
       <Heading text="All Questions" />
       <p>Found {{ filtered.length }} question{{ filtered.length !== 1 ? 's' : '' }}</p>
     </div>
-    <div class="flex gap-2 items-center rounded border border-slate-300 p-2">
+    <div class="flex gap-2 items-center rounded border border-slate-300 p-2 w-full sm:w-auto">
       <p class="px-4 font-semibold">Filters:</p>
-      <div class="flex flex-col gap-2">
-        <div class="flex gap-2">
+      <div class="flex flex-col gap-2 grow">
+        <div class="flex gap-2 justify-evenly">
           <button
-            class="rounded bg-slate-200 hover:bg-slate-300 shadow text-slate-900 px-2 py-1"
-            :class="filter === 'faq' ? 'border border-sky-500' : ''"
+            class="rounded bg-slate-200 hover:bg-slate-300 shadow text-slate-900 px-2 py-1 grow"
+            :class="{ 'font-semibold': filter === 'faq' }"
             type="button"
             @click="filter = 'faq'"
           >FAQs
           </button>
           <button
-            class="rounded bg-slate-200 hover:bg-slate-300 shadow text-slate-900 px-2 py-1"
-            :class="filter === 'errata' ? 'border border-sky-500' : ''"
+            class="rounded bg-slate-200 hover:bg-slate-300 shadow text-slate-900 px-2 py-1 grow"
+            :class="{ 'font-semibold': filter === 'errata' }"
             type="button"
             @click="filter = 'errata'">Rules Errata
           </button>
         </div>
         <button
           class="rounded bg-slate-200 hover:bg-slate-300 shadow text-slate-900 px-2 py-1"
-          :class="filter === 'all' ? 'border border-sky-500' : ''"
+          :class="{ 'font-semibold': filter === 'all' }"
           type="button"
           @click="filter = 'all'">Both
         </button>

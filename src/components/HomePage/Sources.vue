@@ -7,6 +7,21 @@ const sources: {
   type: string;
 }[] = [
   {
+    url: 'https://www.warhammer-community.com/wp-content/uploads/2024/04/RHCNrdHuyTpklmzS.pdf',
+    text: 'Rules Update, July 2024',
+    type: 'pdf',
+  },
+  {
+    url: 'https://www.warhammer-community.com/wp-content/uploads/2024/04/AHP6djhYywoHYP1p.pdf',
+    text: "Designer's Commentary, July 2024",
+    type: 'pdf',
+  },
+  {
+   url: 'https://www.warhammer-community.com/wp-content/uploads/2022/10/wjMBDNNu76NBMlVc.pdf',
+    text: 'Previous Seasons Designer’s Commentary, July 2024',
+    type: 'pdf',
+  },
+  {
     url: 'https://www.warhammer-community.com/wp-content/uploads/2024/04/NoyiHWRpfITSDz25.pdf',
     text: 'Rules Update, April 2024 (version 1.1)',
     type: 'pdf',

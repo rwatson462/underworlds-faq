@@ -6,6 +6,14 @@ const news: {
   items: string[];
 }[] = [
   {
+    date: 'Wednesday 11th September 2024',
+    items: [
+      "Added all new FAQ from Designer's Commentary released in August (sorry for the delay!)",
+      "Added all new FAQ from Previous Seasons Designer's Commentary released in August",
+      "Added all new Errata from Rules Updates released in August",
+    ],
+  },
+  {
     date: 'Saturday 8th June 2024',
     items: [
       'Added a filter to toggle between FAQs and Rules Errata',

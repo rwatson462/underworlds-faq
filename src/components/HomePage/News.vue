@@ -6,6 +6,12 @@ const news: {
   items: string[];
 }[] = [
   {
+    date: 'Saturday 26th October 2024',
+    items: [
+      'Start to think about the new edition of Underworlds and what that means for this site',
+    ],
+  },
+  {
     date: 'Wednesday 11th September 2024',
     items: [
       "Added all new FAQ from Designer's Commentary released in August (sorry for the delay!)",
